@@ -15,25 +15,24 @@ webhook = DiscordWebhook(url=nmap_webhookurl)
 
 #Functions
 
-# This definition takes too long to scan, looking into why, so temporarily commented out.
-# def nmapdns(target):
-#     print(Fore.GREEN + '[+] Running NMAP DNS scan\n')
-#     dns_results = nmap.nmap_dns_brute_script(target)
-#     results = ''
-#     separator = '-----------------------\n'
-#     webhook = DiscordWebhook(url=nuclei_webhook)
-#     for item in dns_results:
-#         hostname = '[+] Hostname: ' + item['hostname']
-#         IPaddress = '[+] IP Address: ' + item['address'] + '\n'
-#         results += hostname + IPaddress
-#     results += separator
-#     print(results)
-#     print(f'[+] Sending scan over {nuclei_webhook}')
-#     embed = DiscordEmbed(title=f'[+] SCAN RESULT: {datetime.datetime.now()}\n[+] Target: {target}',
-#                          description='[+] NMAP DNS module' + f'\n{results}', color="03b2f8")
-#     webhook.add_embed(embed)
-#     webhook.execute()
-#     print('[+] Report sent')
+def nmapdns(target):
+    print(Fore.GREEN + '[+] Running NMAP DNS scan\n')
+    dns_results = nmap.nmap_dns_brute_script(target)
+    results = ''
+    separator = '-----------------------\n'
+    webhook = DiscordWebhook(url=nuclei_webhook)
+    for item in dns_results:
+        hostname = '[+] Hostname: ' + item['hostname']
+        IPaddress = '[+] IP Address: ' + item['address'] + '\n'
+        results += hostname + IPaddress
+    results += separator
+    print(results)
+    print(f'[+] Sending scan over {nuclei_webhook}')
+    embed = DiscordEmbed(title=f'[+] SCAN RESULT: {datetime.datetime.now()}\n[+] Target: {target}',
+                         description='[+] NMAP DNS module' + f'\n{results}', color="03b2f8")
+    webhook.add_embed(embed)
+    webhook.execute()
+    print('[+] Report sent')
 
 def nmapversion(target):
     print(Fore.GREEN + '[+] Running NMAP version scan\n')

@@ -56,6 +56,8 @@ def main():
         print('\n')
         nmap.nmaptopports(target)
         print('\n')
+        nmap.nmapdns(target)
+        print('\n')
         nuclei.nucleiscan(target)
         print('\n[+] Scans completed')
         exit()
